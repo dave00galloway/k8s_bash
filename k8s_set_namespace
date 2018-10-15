@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# modify the current namespace for the current context only
+
+NAMESPACE=$1
+
+kubectl config set-context $(kubectl config current-context) --namespace=$NAMESPACE
+kubectl config view | grep namespace:
