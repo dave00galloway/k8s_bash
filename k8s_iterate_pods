@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+## example usage (assuming namespace and context set already in the shell):-
+## k8s_iterate_pods mongo "ls /var"
+
+FILTER=$1
+CMD=$2
+
+for pod in $(kubectl get pod | grep ${FILTER} | cut -d " " -f 1); do echo $pod; kubectl exec -it  ${pod} ${CMD}; done
